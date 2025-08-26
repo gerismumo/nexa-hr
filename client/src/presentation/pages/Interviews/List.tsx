@@ -3,16 +3,15 @@ import {
   Card,
   Text,
   Group,
-  Stack,
   TextInput,
   Grid,
 } from "@mantine/core";
 import { Search, Filter } from "lucide-react";
-import { useState } from "react";
 import ListCard from "./ListCard";
 import type { ICandidateFeedback } from "../../../types/analysis";
+import { useInterviewStore } from "../../../stores/useInterviewStore";
 const List = ({ data }: { data: ICandidateFeedback[] }) => {
-  const [searchTerm, setSearchTerm] = useState("");
+const { searchTerm, setSearchTerm } = useInterviewStore();
 
   if (!data || data.length === 0) {
     return (

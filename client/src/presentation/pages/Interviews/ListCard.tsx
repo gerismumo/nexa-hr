@@ -11,6 +11,8 @@ import {
 } from "@mantine/core";
 import { Play, FileAudio } from "lucide-react";
 import type { ICandidateFeedback } from "../../../types/analysis";
+import { useInterviewStore } from "../../../stores/useInterviewStore";
+import { HighlightText } from "../../components/HighlightText";
 
 const ListCard = ({ summary, sentiment, keywords }: ICandidateFeedback) => {
   const getStatusColor = (status: ICandidateFeedback["sentiment"]) => {
@@ -25,6 +27,8 @@ const ListCard = ({ summary, sentiment, keywords }: ICandidateFeedback) => {
         return "gray";
     }
   };
+
+  const { searchTerm } = useInterviewStore();
 
   return (
     <Card withBorder radius="md" shadow="sm" p="lg">
@@ -41,26 +45,48 @@ const ListCard = ({ summary, sentiment, keywords }: ICandidateFeedback) => {
         <Flex justify="space-between" align="flex-start" w="100%" gap="md">
           <Stack gap={6} flex={1} maw={{ base: "100%", sm: "70%" }}>
             <Text fw={500} size="sm" className="line-clamp-2">
-              {summary}
+              {HighlightText(summary, searchTerm)}
             </Text>
             <Group gap={6} wrap="wrap">
-              {keywords.slice(0, 5).map((k, idx) => (
+              {keywords.map((k, idx) => {
+                if (idx < 5) {
+                  return (
+                    <Badge
+                      key={idx}
+                      size="sm"
+                      radius="sm"
+                      variant="light"
+                      color={
+                        searchTerm &&
+                        k.toLowerCase().includes(searchTerm.toLowerCase())
+                          ? "yellow"
+                          : "blue"
+                      }
+                    >
+                      {HighlightText(k, searchTerm)}
+                    </Badge>
+                  );
+                }
+                return null;
+              })}
+
+              {keywords.length > 5 && (
                 <Badge
-                  key={idx}
                   size="sm"
                   radius="sm"
-                  variant="light"
-                  color="blue"
+                  variant="outline"
+                  color="gray"
+                  style={{ cursor: "pointer" }}
+                  title={keywords
+                    .slice(5)
+                    .map((kw) => HighlightText(kw, searchTerm))
+                    .join(", ")}
                 >
-                  {k}
-                </Badge>
-              ))}
-              {keywords.length > 5 && (
-                <Badge size="sm" radius="sm" variant="outline" color="gray">
                   +{keywords.length - 5} more
                 </Badge>
               )}
             </Group>
+
             <Button
               variant="light"
               size="xs"
