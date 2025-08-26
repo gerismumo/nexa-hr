@@ -1,8 +1,8 @@
 import { Flex, Stack, Title } from "@mantine/core";
 import List from "./List";
-import { mockInterviews } from "../../../mockdata/interview";
 import ActionLayout from "../../components/ActionLayout";
 import Add from "./Add";
+import analysisData from "../../../mockdata/sample_analysis.json"
 
 const Interviews = () => {
   return (
@@ -15,7 +15,7 @@ const Interviews = () => {
           <Add />
         </ActionLayout>
       </Flex>
-      <List data={mockInterviews} />
+      <List data={analysisData} />
     </Stack>
   );
 };

@@ -2,16 +2,15 @@ import {
   Button,
   Card,
   Text,
-  Title,
   Group,
   Stack,
   TextInput,
 } from "@mantine/core";
 import { Search, Filter } from "lucide-react";
-import type { Interview } from "../../../types/interview";
 import { useState } from "react";
 import ListCard from "./ListCard";
-const List = ({ data }: { data: Interview[] }) => {
+import type { ICandidateFeedback } from "../../../types/analysis";
+const List = ({ data }: { data: ICandidateFeedback[] }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   if (!data || data.length === 0) {
@@ -24,12 +23,11 @@ const List = ({ data }: { data: Interview[] }) => {
     );
   }
 
-  const filteredInterviews = data.filter(
-    (interview: Interview) =>
-      interview.candidateName
+   const filteredInterviews = data.filter(
+    (interview: ICandidateFeedback) =>
+      interview.summary
         .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      interview.position.toLowerCase().includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase()) 
   );
 
   return (
@@ -54,7 +52,7 @@ const List = ({ data }: { data: Interview[] }) => {
       />
 
       <Stack>
-        {filteredInterviews.map((interview: Interview, index: number) => (
+        {filteredInterviews.map((interview, index: number) => (
           <ListCard {...interview} key={index} />
         ))}
       </Stack>

@@ -2,87 +2,65 @@ import {
   Card,
   Text,
   Badge,
-  Progress,
   Group,
   Stack,
   Avatar,
   ActionIcon,
-  Box,
   Flex,
+  Button,
 } from "@mantine/core";
-import { Play, FileAudio, MoreVertical } from "lucide-react";
-import type { Interview } from "../../../types/interview";
+import { Play, FileAudio } from "lucide-react";
+import type { ICandidateFeedback } from "../../../types/analysis";
 
-const ListCard = ({
-  id,
-  candidateName,
-  position,
-  date,
-  duration,
-  status,
-  transcriptProgress,
-  analysisScore,
-}: Interview) => {
-  const getStatusColor = (status: Interview["status"]) => {
+const ListCard = ({ summary, sentiment, keywords }: ICandidateFeedback) => {
+  const getStatusColor = (status: ICandidateFeedback["sentiment"]) => {
     switch (status) {
-      case "completed":
+      case "positive":
         return "green";
-      case "processing":
+      case "negative":
+        return "red";
+      case "neutral":
         return "yellow";
-      case "pending":
-        return "gray";
       default:
         return "gray";
     }
   };
 
   return (
-    <Card withBorder key={id} p="md">
-      <Group
-        justify="space-between"
-        align="flex-start"
-        wrap="wrap"
-      >
+    <Card withBorder p="md" radius="md" shadow="sm">
+      <Group justify="space-between" align="flex-start" wrap="wrap">
         <Group align="flex-start" wrap="nowrap">
           <Avatar color="blue" radius="xl" size="lg">
             <FileAudio size={18} />
           </Avatar>
-          <Stack gap={4} maw={{ base: "100%", sm: "auto" }}>
-            <Group gap="xs" wrap="wrap">
-              <Text fw={500}>{candidateName}</Text>
-              <Badge color={getStatusColor(status)} variant="light">
-                {status}
-              </Badge>
-            </Group>
-            <Text size="sm" c="dimmed">
-              {position}
+          <Stack gap={10} maw={{ base: "100%", sm: "auto" }}>
+            <Text fw={400} size="sm" className="line-clamp-1">
+              {summary}
             </Text>
-            <Group gap="lg" c="dimmed" fz="xs" wrap="wrap">
-              <Text>{date}</Text>
-              <Text>{duration}</Text>
-              {analysisScore && (
-                <Text c="blue" fw={500}>
-                  Score: {analysisScore}%
-                </Text>
-              )}
+            <Group gap="xs" wrap="wrap">
+              {keywords.map((k, idx) => (
+                <Badge key={idx} variant="outline" size="sm">
+                  {k}
+                </Badge>
+              ))}
             </Group>
+            <Button variant="light" size="xs" mt={4}>
+              View more
+            </Button>
           </Stack>
         </Group>
-        <Flex direction="column" gap={{base:0, xs:"xs"}} mt={{ base: "sm", sm: 0 }} align="flex-end">
-          {status === "processing" && (
-            <Box w={{ base: "100%", xs: 120 }}>
-              <Progress value={transcriptProgress} size="sm" />
-              <Text size="xs" c="dimmed" ta="center" mt={2}>
-                {transcriptProgress}%
-              </Text>
-            </Box>
-          )}
+        <Flex
+          direction="column"
+          gap={{ base: 0, xs: "xs" }}
+          mt={{ base: "sm", sm: 0 }}
+          align="flex-end"
+        >
           <Group gap="xs">
+            <Badge color={getStatusColor(sentiment)} variant="outline">
+              {sentiment}
+            </Badge>
             <ActionIcon variant="subtle" size="md">
               <Play size={16} />
-            </ActionIcon>
-            <ActionIcon variant="subtle" size="md">
-              <MoreVertical size={16} />
             </ActionIcon>
           </Group>
         </Flex>

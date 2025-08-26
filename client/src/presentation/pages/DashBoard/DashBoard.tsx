@@ -2,9 +2,10 @@ import { Title, Group, Grid, Box, Flex } from "@mantine/core";
 import { stats } from "../../../mockdata/dashboardData";
 import StatsCard from "./StatsCard";
 import RecentList from "../Interviews/RecentList";
-import { mockInterviews } from "../../../mockdata/interview";
+
 import Add from "../Interviews/Add";
 import ActionLayout from "../../components/ActionLayout";
+import analysisData from "../../../mockdata/sample_analysis.json"
 
 export function Dashboard() {
   return (
@@ -32,7 +33,7 @@ export function Dashboard() {
           </Flex>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 8 }}>
-          <RecentList data={mockInterviews} />
+          <RecentList data={analysisData} />
         </Grid.Col>
       </Grid>
     </Box>
