@@ -6,6 +6,7 @@ import classes from "./HeaderMenu.module.css";
 import { IconMenu2 } from "@tabler/icons-react";
 import { useState } from "react";
 import { NavbarNested } from "../Navbar/Navbar";
+import ThemeToggle from "../ThemeToggle";
 
 // const links = [
 //   { link: "/about", label: "Features" },
@@ -34,7 +35,6 @@ import { NavbarNested } from "../Navbar/Navbar";
 
 export function HeaderMenu() {
   // const [opened, { toggle }] = useDisclosure(false);
-
 
   // const items = links.map((link) => {
   //   const menuItems = link.links?.map((item) => (
@@ -78,12 +78,10 @@ export function HeaderMenu() {
   //   );
   // });
 
+  const [isOpen, setIsOpen] = useState(false);
 
-    const [isOpen, setIsOpen] = useState(false);
-  
-    const toggleSidebar = () => setIsOpen(!isOpen);
-      const closeSidebar = () => setIsOpen(false);
-
+  const toggleSidebar = () => setIsOpen(!isOpen);
+  const closeSidebar = () => setIsOpen(false);
 
   return (
     <>
@@ -96,11 +94,14 @@ export function HeaderMenu() {
             {/* <Group gap={5}>
                   {items}
               </Group>  */}
-            <Button>Log Out</Button>
+            <div className="flex flex-row gap-3 items-center">
+              <ThemeToggle />
+              <Button>Log Out</Button>
+            </div>
           </div>
         </div>
       </header>
-       {isOpen && <NavbarNested onClose={closeSidebar} />}
+      {isOpen && <NavbarNested onClose={closeSidebar} />}
     </>
   );
 }

@@ -27,13 +27,13 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links, link, on
   return (
     <>
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
-        <Group justify="space-between" gap={0} className='hover:bg-gray-100'>
+        <Group justify="space-between" gap={0}>
           <Box  style={{ display: 'flex', alignItems: 'center' }}>
             <ThemeIcon variant="light" size={30}>
               <Icon size={18} />
             </ThemeIcon>
             {link ? (
-              <Link onClick={onClose} to={link} className="!text-black"
+              <Link onClick={onClose} to={link}
               >
                  <Box ml="md">{label}</Box>
               </Link>
