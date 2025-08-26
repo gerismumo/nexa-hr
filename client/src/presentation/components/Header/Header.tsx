@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@mantine/core";
+import { Avatar, Button } from "@mantine/core";
 
 import classes from "./HeaderMenu.module.css";
 import { IconMenu2 } from "@tabler/icons-react";
@@ -97,6 +97,9 @@ export function HeaderMenu() {
             <div className="flex flex-row gap-3 items-center">
               <ThemeToggle />
               <Button>Log Out</Button>
+              <Avatar color="blue" radius="xl">
+                HR
+              </Avatar>
             </div>
           </div>
         </div>
