@@ -1,9 +1,7 @@
 "use client";
 import {
+  IconLayersIntersect2,
   IconLayoutDashboard,
-  IconShoppingCart,
-  IconStack3,
-  IconUsers,
   IconX,
 } from "@tabler/icons-react";
 import { Group, Image, ScrollArea } from "@mantine/core";
@@ -21,25 +19,12 @@ const mockdata = [
     link: "/dashboard",
   },
   {
-    label: "Daily Sales",
-    icon: IconShoppingCart,
+    label: "Interviews",
+    icon: IconLayersIntersect2,
     initiallyOpened: true,
     links: [
-      { label: "List", link: `daily-sales` },
-      { label: "Analytics", link: `daily-sales-analytics` },
+      { label: "List", link: `interviews` },
     ],
-  },
-  {
-    label: "Sales Agent",
-    icon: IconUsers,
-    initiallyOpened: true,
-    link: "sales-agent",
-  },
-  {
-    label: "Stock Assigments",
-    icon: IconStack3,
-    initiallyOpened: true,
-    link: "stock-assign",
   },
   // {
   //   label: "Analytics",
@@ -47,12 +32,6 @@ const mockdata = [
   //   initiallyOpened: true,
   //   link: "/dashboard",
   // },
-  {
-    label: "Users",
-    icon: IconUsers,
-    initiallyOpened: false,
-    link: "users",
-  },
   // {
   //   label: "Settings",
   //   icon: IconSettings,
