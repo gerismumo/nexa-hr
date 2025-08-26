@@ -7,8 +7,9 @@ import {
   Stack,
   Avatar,
   ActionIcon,
+  Box,
+  Flex,
 } from "@mantine/core";
-
 import { Play, FileAudio, MoreVertical } from "lucide-react";
 import type { Interview } from "../../../types/interview";
 
@@ -34,15 +35,20 @@ const ListCard = ({
         return "gray";
     }
   };
+
   return (
     <Card withBorder key={id} p="md">
-      <Group justify="space-between" align="flex-start">
-        <Group>
-          <Avatar color="blue" radius="xl">
-            <FileAudio size={16} />
+      <Group
+        justify="space-between"
+        align="flex-start"
+        wrap="wrap"
+      >
+        <Group align="flex-start" wrap="nowrap">
+          <Avatar color="blue" radius="xl" size="lg">
+            <FileAudio size={18} />
           </Avatar>
-          <Stack gap={2}>
-            <Group gap="xs">
+          <Stack gap={4} maw={{ base: "100%", sm: "auto" }}>
+            <Group gap="xs" wrap="wrap">
               <Text fw={500}>{candidateName}</Text>
               <Badge color={getStatusColor(status)} variant="light">
                 {status}
@@ -51,7 +57,7 @@ const ListCard = ({
             <Text size="sm" c="dimmed">
               {position}
             </Text>
-            <Group gap="lg" c="dimmed" fz="xs">
+            <Group gap="lg" c="dimmed" fz="xs" wrap="wrap">
               <Text>{date}</Text>
               <Text>{duration}</Text>
               {analysisScore && (
@@ -62,23 +68,24 @@ const ListCard = ({
             </Group>
           </Stack>
         </Group>
-
-        <Group>
+        <Flex direction="column" gap={{base:0, xs:"xs"}} mt={{ base: "sm", sm: 0 }} align="flex-end">
           {status === "processing" && (
-            <Stack gap={2} w={100}>
+            <Box w={{ base: "100%", xs: 120 }}>
               <Progress value={transcriptProgress} size="sm" />
-              <Text size="xs" c="dimmed" ta="center">
+              <Text size="xs" c="dimmed" ta="center" mt={2}>
                 {transcriptProgress}%
               </Text>
-            </Stack>
+            </Box>
           )}
-          <ActionIcon variant="subtle">
-            <Play size={16} />
-          </ActionIcon>
-          <ActionIcon variant="subtle">
-            <MoreVertical size={16} />
-          </ActionIcon>
-        </Group>
+          <Group gap="xs">
+            <ActionIcon variant="subtle" size="md">
+              <Play size={16} />
+            </ActionIcon>
+            <ActionIcon variant="subtle" size="md">
+              <MoreVertical size={16} />
+            </ActionIcon>
+          </Group>
+        </Flex>
       </Group>
     </Card>
   );

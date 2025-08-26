@@ -7,12 +7,14 @@ import Add from "./Add";
 const Interviews = () => {
   return (
     <Stack gap="md">
-        <Flex justify="space-between" align="center" px="md">
-            <Title order={2} mb="md" style={{flexGrow:1}}>Interviews List</Title>
-            <ActionLayout title="" btnText="Add" size="lg">
-                <Add/>
-            </ActionLayout>
-        </Flex>
+      <Flex justify="space-between" align="center" px="md">
+        <Title order={2} mb="md" style={{ flexGrow: 1 }}>
+          Interviews List
+        </Title>
+        <ActionLayout title="" btnText="Add" size="lg">
+          <Add />
+        </ActionLayout>
+      </Flex>
       <List data={mockInterviews} />
     </Stack>
   );
