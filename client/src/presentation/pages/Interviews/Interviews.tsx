@@ -9,7 +9,7 @@ const Interviews = () => {
     <Stack gap="md">
         <Flex justify="space-between" align="center" px="md">
             <Title order={2} mb="md" style={{flexGrow:1}}>Interviews List</Title>
-            <ActionLayout title="Add" btnText="Add">
+            <ActionLayout title="" btnText="Add" size="lg">
                 <Add/>
             </ActionLayout>
         </Flex>
