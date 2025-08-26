@@ -1,14 +1,18 @@
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginForm from "./presentation/pages/auth/Login";
+import DashboardLayout from "./presentation/components/DashboardLayout";
 function App() {
-
   return (
-    <>
-      <div className="">
-        <h2>Nexa hr app</h2>
-      </div>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<div>Dashboard</div>} />
+          <Route path="settings" element={<div>Settings</div>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
