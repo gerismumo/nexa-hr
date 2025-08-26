@@ -27,67 +27,64 @@ const ListCard = ({ summary, sentiment, keywords }: ICandidateFeedback) => {
   };
 
   return (
-    <Card withBorder radius="sm" shadow="xs" p="lg">
-      <Flex justify="space-between" align="flex-start">
-        <Flex direction="column">
-          <Flex gap="md" justify="center"  wrap="nowrap">
-            <Avatar
-              size="lg"
-              radius="xl"
-              color="blue"
-              variant="gradient"
-              gradient={{ from: "indigo", to: "cyan" }}
+    <Card withBorder radius="md" shadow="sm" p="lg">
+      <Flex justify="space-between" align="flex-start" gap="md">
+        <Avatar
+          size="lg"
+          radius="xl"
+          color="blue"
+          variant="gradient"
+          gradient={{ from: "indigo", to: "cyan" }}
+        >
+          <FileAudio size={20} />
+        </Avatar>
+        <Flex justify="space-between" align="flex-start" w="100%" gap="md">
+          <Stack gap={6} flex={1} maw={{ base: "100%", sm: "70%" }}>
+            <Text fw={500} size="sm" className="line-clamp-2">
+              {summary}
+            </Text>
+            <Group gap={6} wrap="wrap">
+              {keywords.slice(0, 5).map((k, idx) => (
+                <Badge
+                  key={idx}
+                  size="sm"
+                  radius="sm"
+                  variant="light"
+                  color="blue"
+                >
+                  {k}
+                </Badge>
+              ))}
+              {keywords.length > 5 && (
+                <Badge size="sm" radius="sm" variant="outline" color="gray">
+                  +{keywords.length - 5} more
+                </Badge>
+              )}
+            </Group>
+            <Button
+              variant="light"
+              size="xs"
+              mt={4}
+              radius="sm"
+              w="fit-content"
             >
-              <FileAudio size={20} />
-            </Avatar>
-            <Flex gap="md" wrap={{base: "wrap", sm: "nowrap"}} justify="space-between" w="100%" >
-              <Stack gap={8} maw={{ base: "100%", sm: "auto" }}>
-                <Text fw={400} size="sm" className="line-clamp-1">
-                  {summary}
-                </Text>
-                <Group gap={6} wrap="wrap">
-                  {keywords.slice(0, 5).map((k, idx) => (
-                    <Badge
-                      key={idx}
-                      size="sm"
-                      radius="sm"
-                      variant="light"
-                      color="blue"
-                    >
-                      {k}
-                    </Badge>
-                  ))}
-                </Group>
-              </Stack>
-              <Flex
-                direction="column"
-                gap="xs"
-                mt={{ base: "md", sm: 0 }}
-                align="end"
-                justify="center"
-              >
-                <Group>
-<Badge color={getStatusColor(sentiment)} w="100%" variant="outline">
-                    {sentiment}
-                  </Badge>
-                </Group>
-                  
-                  <ActionIcon
-                    variant="filled"
-                    color="blue"
-                    radius="xl"
-                    size="lg"
-                    aria-label="Play audio"
-                  >
-                    <Play size={16} />
-                  </ActionIcon>
-            
-              </Flex>
-            </Flex>
-          </Flex>
-          <Button variant="subtle" size="xs" mt={6} radius="sm">
-            View more
-          </Button>
+              View more
+            </Button>
+          </Stack>
+          <Stack align="end" gap="sm">
+            <Badge color={getStatusColor(sentiment)} variant="outline">
+              {sentiment.charAt(0).toUpperCase() + sentiment.slice(1)}
+            </Badge>
+            <ActionIcon
+              variant="filled"
+              color="blue"
+              radius="xl"
+              size="lg"
+              aria-label="Play audio"
+            >
+              <Play size={16} />
+            </ActionIcon>
+          </Stack>
         </Flex>
       </Flex>
     </Card>
