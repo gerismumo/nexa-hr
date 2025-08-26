@@ -5,6 +5,7 @@ import {
   Group,
   Stack,
   TextInput,
+  Grid,
 } from "@mantine/core";
 import { Search, Filter } from "lucide-react";
 import { useState } from "react";
@@ -23,11 +24,8 @@ const List = ({ data }: { data: ICandidateFeedback[] }) => {
     );
   }
 
-   const filteredInterviews = data.filter(
-    (interview: ICandidateFeedback) =>
-      interview.summary
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) 
+  const filteredInterviews = data.filter((interview: ICandidateFeedback) =>
+    interview.summary.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -51,11 +49,13 @@ const List = ({ data }: { data: ICandidateFeedback[] }) => {
         mb="md"
       />
 
-      <Stack>
+      <Grid gutter="sm">
         {filteredInterviews.map((interview, index: number) => (
-          <ListCard {...interview} key={index} />
+          <Grid.Col span={{ base: 12, md: 6 }} key={index}>
+            <ListCard {...interview} key={index} />
+          </Grid.Col>
         ))}
-      </Stack>
+      </Grid>
     </Card>
   );
 };
