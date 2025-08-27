@@ -15,7 +15,6 @@ export async function apiHandler<T>(apiCall: Promise<any>): Promise<ApiResponse<
   } catch (error: any) {
     let message = "Unexpected error occurred";
     if (error.response) {
-      console.log(error)
       message = error.response.data?.detail || "Request failed";
     } else if (error.request) {
       message = "Unable to reach the server. Please try again.";
