@@ -1,4 +1,4 @@
-import { Card, Text, Title, Group, Badge, Skeleton } from "@mantine/core";
+import { Card, Text, Title, Group, Badge, Skeleton, Flex } from "@mantine/core";
 
 const AnalysisView = ({
   summary,
@@ -10,12 +10,12 @@ const AnalysisView = ({
   keywords: string[];
 }) => {
   return (
-    <Card shadow="sm" p="md">
-      <Title order={4}>AI Analysis</Title>
+    <Card shadow="xs" p="md" withBorder>
+      <Title order={3}>AI Analysis</Title>
       <Text size="sm" mt="xs">
         {summary || <Skeleton height={60} />}
       </Text>
-      <Group mt="md" gap="xs">
+      <Flex direction="column" mt="md" gap="xs">
         <Badge
           color={
             sentiment === "positive"
@@ -27,12 +27,19 @@ const AnalysisView = ({
         >
           {sentiment}
         </Badge>
-        {keywords.map((k) => (
-          <Badge key={k} variant="outline">
-            {k}
-          </Badge>
-        ))}
-      </Group>
+        <Flex direction="column" gap="xs">
+          <Text size="md" fw={500}>
+            Keywords
+          </Text>
+          <Group>
+            {keywords.map((k) => (
+              <Badge key={k} variant="outline">
+                {k}
+              </Badge>
+            ))}
+          </Group>
+        </Flex>
+      </Flex>
     </Card>
   );
 };

@@ -9,13 +9,20 @@ import { TranscriptView } from "./TranscriptView";
 
 const mockData: ICombinedCandidateFeedback[] = data;
 const InterviewDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
-  const feedback = mockData[0];
+  const numericId = id ? Number(id) : NaN;
+
+  const feedback = mockData.find((f) => f.id === numericId);
+
+  if (!feedback) {
+    return <div>Interview not found.</div>;
+  }
+
   return (
     <Stack gap="lg">
       <div>
-        <Title order={2}>Interview Candidate #{feedback.id}</Title>
+        <Title order={2}>Interview Candidate</Title>
         <Text size="sm" color="dimmed">
           {feedback.transcript.language} ·{" "}
           {Math.round(feedback.transcript.duration_sec)}s
