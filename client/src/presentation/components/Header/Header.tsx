@@ -86,7 +86,7 @@ export function HeaderMenu() {
   const navigate = useNavigate();
   return (
     <>
-      <header className={classes.header}>
+      <header className={`${classes.header} fixed sm:relative w-full z-50 sm:z-0`}>
         <div className="flex justify-between px-[10px] md:px-[45px]">
           <div className="flex flex-row justify-between md:justify-end items-center w-[100%] h-[56px] ">
             <div className="flex md:hidden">

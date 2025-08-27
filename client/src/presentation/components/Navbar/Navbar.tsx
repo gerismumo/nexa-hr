@@ -22,9 +22,7 @@ const mockdata = [
     label: "Interviews",
     icon: IconLayersIntersect2,
     initiallyOpened: true,
-    links: [
-      { label: "List", link: `interviews` },
-    ],
+    links: [{ label: "List", link: `interviews` }],
   },
   // {
   //   label: "Analytics",
@@ -57,7 +55,7 @@ export function NavbarNested({ onClose }: NavbarNestedProps) {
   const navigate = useNavigate();
 
   const links = mockdata.map((item) => (
-    <LinksGroup {...item} key={item.label} onClose={onClose } />
+    <LinksGroup {...item} key={item.label} onClose={onClose} />
   ));
 
   return (
@@ -85,7 +83,7 @@ export function NavbarNested({ onClose }: NavbarNestedProps) {
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed top-0 left-0 z-999 h-screen w-[250px] bg-white shadow-lg p-[10px] flex flex-col justify-between gap-6 md:hidden"
+          className={`${classes.minNavbar} fixed top-0 left-0 z-999 h-screen w-[250px] shadow-lg p-[10px] flex flex-col justify-between gap-6 md:hidden`}
         >
           <div className="">
             <div className="flex justify-between items-center ">

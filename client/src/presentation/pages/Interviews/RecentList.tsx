@@ -33,7 +33,7 @@ const RecentList = ({ data }: { data: ICandidateFeedback[] }) => {
   );
 
   return (
-    <Card withBorder radius="md" shadow="sm" p="lg">
+    <Card withBorder radius="md" shadow="sm"  p={{base: "xs", sm: "md", md: "lg"}}>
       <Group justify="space-between" mb="md">
         <div>
           <Title order={4}>Recent Interviews</Title>

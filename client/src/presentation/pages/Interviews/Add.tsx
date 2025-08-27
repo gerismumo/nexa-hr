@@ -68,7 +68,12 @@ const Add = () => {
   };
 
   return (
-    <Card withBorder radius="md" shadow="sm" p="lg">
+    <Card
+      withBorder
+      radius="md"
+      shadow="sm"
+      p={{ base: "xs", sm: "md", md: "lg" }}
+    >
       <Title order={4} mb="xs">
         Upload Interview
       </Title>

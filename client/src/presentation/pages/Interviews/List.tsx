@@ -1,17 +1,10 @@
-import {
-  Button,
-  Card,
-  Text,
-  Group,
-  TextInput,
-  Grid,
-} from "@mantine/core";
+import { Button, Card, Text, Group, TextInput, Grid } from "@mantine/core";
 import { Search, Filter } from "lucide-react";
 import ListCard from "./ListCard";
 import type { ICandidateFeedback } from "../../../types/analysis";
 import { useInterviewStore } from "../../../stores/useInterviewStore";
 const List = ({ data }: { data: ICandidateFeedback[] }) => {
-const { searchTerm, setSearchTerm } = useInterviewStore();
+  const { searchTerm, setSearchTerm } = useInterviewStore();
 
   if (!data || data.length === 0) {
     return (
@@ -28,7 +21,12 @@ const { searchTerm, setSearchTerm } = useInterviewStore();
   );
 
   return (
-    <Card withBorder radius="md" shadow="sm" p="lg">
+    <Card
+      withBorder
+      radius="md"
+      shadow="sm"
+      p={{ base: "xs", sm: "md", md: "lg" }}
+    >
       <Group justify="space-between" mb="md">
         <div>
           <Text size="sm" c="dimmed">
