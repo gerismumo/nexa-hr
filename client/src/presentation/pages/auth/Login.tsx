@@ -8,6 +8,7 @@ import {
   Title,
   Flex,
   Image,
+  Text,
 } from "@mantine/core";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -74,6 +75,12 @@ const LoginForm = () => {
           />
         </Flex>
         <Paper withBorder shadow="md" p={isMobile ? "md" : "xl"} radius="md">
+          <div className="mb-4 p-2 text-center">
+            <Text size="sm">
+              No need to enter email or password just click <b>Login</b> to
+              access the dashboard.
+            </Text>
+          </div>
           <form onSubmit={formik.handleSubmit}>
             <TextInput
               label="Email"
