@@ -60,6 +60,7 @@ const LoginForm = () => {
           size={isMobile ? "20px" : "28px"}
           mb={20}
           className="text-center"
+          title="Login"
         >
           Login
         </Title>
