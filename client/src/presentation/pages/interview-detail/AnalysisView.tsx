@@ -10,6 +10,7 @@ import {
   Accordion,
 } from "@mantine/core";
 import type { InterviewQuestion } from "../../../types/analysis";
+import { getStatusColor } from "../../../util/util";
 
 const AnalysisView = ({
   summary,
@@ -29,18 +30,7 @@ const AnalysisView = ({
         {summary || <Skeleton height={60} />}
       </Text>
       <Flex direction="column" mt="md" gap="md">
-        <Badge
-          size="lg"
-          radius="sm"
-          color={
-            sentiment === "positive"
-              ? "green"
-              : sentiment === "negative"
-              ? "red"
-              : "gray"
-          }
-          variant="filled"
-        >
+        <Badge color={getStatusColor(sentiment)} variant="outline">
           {sentiment}
         </Badge>
         <Flex direction="column" gap="xs">

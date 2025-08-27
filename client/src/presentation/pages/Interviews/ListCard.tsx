@@ -14,22 +14,12 @@ import type { ICandidateFeedback } from "../../../types/analysis";
 import { useInterviewStore } from "../../../stores/useInterviewStore";
 import { HighlightText } from "../../components/HighlightText";
 import { useNavigate } from "react-router-dom";
+import { getStatusColor } from "../../../util/util";
 
 const ListCard = ({ id, summary, sentiment, keywords }: ICandidateFeedback) => {
   const navigate = useNavigate();
 
-  const getStatusColor = (status: ICandidateFeedback["sentiment"]) => {
-    switch (status) {
-      case "positive":
-        return "green";
-      case "negative":
-        return "red";
-      case "neutral":
-        return "yellow";
-      default:
-        return "gray";
-    }
-  };
+
 
   const { searchTerm } = useInterviewStore();
 
