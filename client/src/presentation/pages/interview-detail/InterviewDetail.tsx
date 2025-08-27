@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { Text, Title, Group, Stack } from "@mantine/core";
+import { Text, Title, Group, Stack, Grid, Flex } from "@mantine/core";
 import type { ICombinedCandidateFeedback } from "../../../types/combined";
 import data from "../../../mockdata/combined_data.json";
 import AudioPlayer from "./AudioPlayer";
@@ -28,8 +28,12 @@ const InterviewDetail = () => {
           {Math.round(feedback.transcript.duration_sec)}s
         </Text>
       </div>
-      <Group align="flex-start" grow>
-        <Stack gap="lg" style={{ flex: 1 }}>
+      <Flex direction={{ base: "column", md: "row" }} gap="lg" wrap="wrap">
+        <Stack
+          gap="lg"
+          style={{ minWidth: 280 }} 
+          w={{ base: "100%", md: "30%" }}
+        >
           <AudioPlayer
             url={feedback.transcript.audio_url}
             duration={feedback.transcript.duration_sec}
@@ -40,8 +44,10 @@ const InterviewDetail = () => {
             keywords={feedback.keywords}
           />
         </Stack>
-        <TranscriptView transcript={feedback.transcript.transcript} />
-      </Group>
+        <div style={{ flex: 1, width: "100%" }}>
+          <TranscriptView transcript={feedback.transcript.transcript} />
+        </div>
+      </Flex>
     </Stack>
   );
 };

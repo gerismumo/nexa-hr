@@ -39,7 +39,7 @@ export const TranscriptView = ({
         />
         <Popover opened={!!selected} onClose={() => setSelected("")}>
           <Popover.Target>
-            <Button leftSection={<IconTag size={16} />} disabled={!selected}>
+            <Button w={100} leftSection={<IconTag size={16} />} disabled={!selected}>
               Tag
             </Button>
           </Popover.Target>
