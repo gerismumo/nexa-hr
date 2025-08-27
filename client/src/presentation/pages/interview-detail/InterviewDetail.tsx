@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-import { Text, Title, Group, Stack, Grid, Flex } from "@mantine/core";
+import { Text, Title, Stack, Flex } from "@mantine/core";
 import type { ICombinedCandidateFeedback } from "../../../types/combined";
 import data from "../../../mockdata/combined_data.json";
 import AudioPlayer from "./AudioPlayer";

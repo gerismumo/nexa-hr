@@ -4,9 +4,7 @@ import {
   Text,
   ActionIcon,
   Slider,
-  Group,
   Stack,
-  Paper,
   rem,
   Flex,
   Title,
@@ -53,12 +51,7 @@ const AudioPlayer = ({ url, duration }: { url: string; duration: number }) => {
   };
 
   return (
-    <Card
-      shadow="xs"
-      radius="sm"
-      p="lg"
-      withBorder
-    >
+    <Card shadow="xs" radius="sm" p="lg" withBorder>
       <Title order={3} mb="lg">
         Audio Player
       </Title>

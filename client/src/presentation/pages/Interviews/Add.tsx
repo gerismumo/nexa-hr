@@ -1,21 +1,10 @@
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  Text,
-  Title,
-  Stack,
-  TextInput,
-  Group,
-} from "@mantine/core";
-import { DateInput } from "@mantine/dates";
+import { Button, Card, Text, Title, Stack } from "@mantine/core";
 import { Upload } from "lucide-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const AddInterviewSchema = Yup.object().shape({
-  name: Yup.string().required("Interviewee name is required"),
-  date: Yup.date().required("Date of interview is required"),
   file: Yup.mixed<File>()
     .required("File is required")
     .test("fileType", "Only MP3, MP4, WAV are allowed", (value) => {
@@ -23,11 +12,6 @@ const AddInterviewSchema = Yup.object().shape({
       const file = value as File;
       const validTypes = ["audio/mpeg", "audio/wav", "video/mp4"];
       return validTypes.includes(file.type);
-    })
-    .test("fileSize", "File size too large (max 500MB)", (value) => {
-      if (!value) return false;
-      const file = value as File;
-      return file.size <= 500 * 1024 * 1024;
     }),
 });
 
@@ -36,8 +20,6 @@ const Add = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      date: null as Date | null,
       file: null as File | null,
     },
     validationSchema: AddInterviewSchema,
@@ -77,19 +59,6 @@ const Add = () => {
 
       <form onSubmit={formik.handleSubmit}>
         <Stack gap="md">
-          <TextInput
-            label="Interviewee Name"
-            placeholder="Enter interviewee name"
-            {...formik.getFieldProps("name")}
-            error={formik.touched.name && formik.errors.name}
-          />
-          <DateInput
-            label="Date of Interview"
-            placeholder="Pick a date"
-            value={formik.values.date}
-            onChange={(val) => formik.setFieldValue("date", val)}
-            error={formik.touched.date && formik.errors.date}
-          />
           <Stack
             align="center"
             justify="center"
