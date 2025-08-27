@@ -8,12 +8,16 @@ import {
   rem,
   Flex,
   Title,
+  Alert,
 } from "@mantine/core";
 import {
   IconPlayerPlay,
   IconPlayerPause,
   IconRewindBackward10,
   IconRewindForward10,
+  IconInfoCircle,
+  IconArrowLeft,
+  IconArrowRight,
 } from "@tabler/icons-react";
 import { formatTime } from "../../../util/util";
 
@@ -21,6 +25,7 @@ const AudioPlayer = ({ url, duration }: { url: string; duration: number }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [time, setTime] = useState(0);
+  const [showAlert, setShowAlert] = useState(true);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -50,12 +55,57 @@ const AudioPlayer = ({ url, duration }: { url: string; duration: number }) => {
     );
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        togglePlay();
+      }
+      if (e.code === "ArrowLeft") {
+        seek(-10);
+      }
+      if (e.code === "ArrowRight") {
+        seek(10);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isPlaying]);
+
+  // ⏳ Auto-hide alert after 3s
+  useEffect(() => {
+    const timer = setTimeout(() => setShowAlert(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Card shadow="xs" radius="sm" p="lg" withBorder>
-      <Title order={3} mb="lg">
+      <Title order={3} mb="xl">
         Audio Player
       </Title>
       <audio ref={audioRef} src={url} preload="metadata" />
+      {showAlert && (
+        <Alert
+          icon={<IconInfoCircle size={16} />}
+          title="Tip"
+          color="blue"
+          mb="md"
+          p="xs"
+        >
+          You can also use keyboard: <b>Space</b> to Play/Pause,{" "}
+          <IconArrowLeft
+            size={14}
+            style={{ display: "inline", marginBottom: -2 }}
+          />{" "}
+          to rewind 10s,{" "}
+          <IconArrowRight
+            size={14}
+            style={{ display: "inline", marginBottom: -2 }}
+          />{" "}
+          to forward 10s.
+        </Alert>
+      )}
       <Stack gap="sm">
         <Slider
           value={(time / duration) * 100}

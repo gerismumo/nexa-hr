@@ -151,7 +151,7 @@ const ListCard = ({ id, summary, sentiment, keywords }: ICandidateFeedback) => {
             size="xs"
             mt={4}
             radius="sm"
-            w="fit-content"
+            w="100%"
             onClick={() => navigate(`/dashboard/interviews/${id}`)}
           >
             View more
