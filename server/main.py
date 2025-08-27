@@ -82,9 +82,9 @@ async def list_interviews():
     return sorted(DB.values(), key=lambda x: x.upload_date, reverse=True)
 
 
-@app.get('/api/test') 
-async def test():
-    return {"message": "API is working"}
+# @app.get('/api/test') 
+# async def test():
+#     return {"message": "API is working"}
 
 
 @app.get("/api/interviews/{interview_id}", response_model=Interview)

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button, Card, Text, Title, Stack } from "@mantine/core";
 import { Upload } from "lucide-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { interviewService } from "../../../application/usecases/interviewUseCase";
+import toast from "react-hot-toast";
 
 const AddInterviewSchema = Yup.object().shape({
   file: Yup.mixed<File>()
@@ -17,14 +19,31 @@ const AddInterviewSchema = Yup.object().shape({
 
 const Add = () => {
   const [dragActive, setDragActive] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const formik = useFormik({
     initialValues: {
       file: null as File | null,
     },
     validationSchema: AddInterviewSchema,
-    onSubmit: (values) => {
-      console.log("Form submitted:", values);
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      try {
+        const res: any = await interviewService.upload(values.file!);
+        setSubmitting(true);
+        if (res.success) {
+          toast.success("uploaded successful");
+          resetForm();
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
+        } else {
+          toast.error(res.message);
+        }
+      } catch {
+        setSubmitting(false);
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
@@ -90,6 +109,7 @@ const Add = () => {
               <input
                 type="file"
                 hidden
+                ref={fileInputRef}
                 accept="audio/mpeg, audio/wav, video/mp4"
                 onChange={(e) => {
                   if (e.currentTarget.files && e.currentTarget.files[0]) {
@@ -109,7 +129,13 @@ const Add = () => {
               </Text>
             )}
           </Stack>
-          <Button type="submit">Submit</Button>
+          <Button
+            loading={formik.isSubmitting}
+            disabled={formik.isSubmitting}
+            type="submit"
+          >
+            Submit
+          </Button>
         </Stack>
       </form>
     </Card>
