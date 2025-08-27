@@ -15,7 +15,6 @@ import toast from "react-hot-toast";
 import { useMediaQuery } from "@mantine/hooks";
 import { useNavigate } from "react-router-dom";
 
-
 const validationSchema = Yup.object().shape({
   // email: Yup.string().email("Invalid email").required("Email is required"),
   // password: Yup.string()
@@ -25,7 +24,7 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const [visible, setVisible] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 768px)"); 
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -83,9 +82,7 @@ const LoginForm = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={formik.touched.email && formik.errors.email}
-              required
             />
-
             <PasswordInput
               mt="md"
               label="Password"
@@ -97,9 +94,7 @@ const LoginForm = () => {
               error={formik.touched.password && formik.errors.password}
               visible={visible}
               onVisibilityChange={setVisible}
-              required
             />
-
             <Button
               type="submit"
               disabled={formik.isSubmitting}
