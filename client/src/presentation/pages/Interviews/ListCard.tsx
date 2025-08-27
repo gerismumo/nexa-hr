@@ -13,8 +13,11 @@ import { Play, FileAudio } from "lucide-react";
 import type { ICandidateFeedback } from "../../../types/analysis";
 import { useInterviewStore } from "../../../stores/useInterviewStore";
 import { HighlightText } from "../../components/HighlightText";
+import { useNavigate } from "react-router-dom";
 
-const ListCard = ({ summary, sentiment, keywords }: ICandidateFeedback) => {
+const ListCard = ({ id, summary, sentiment, keywords }: ICandidateFeedback) => {
+  const navigate = useNavigate();
+
   const getStatusColor = (status: ICandidateFeedback["sentiment"]) => {
     switch (status) {
       case "positive":
@@ -93,6 +96,7 @@ const ListCard = ({ summary, sentiment, keywords }: ICandidateFeedback) => {
               mt={4}
               radius="sm"
               w="fit-content"
+                onClick={() => navigate(`/dashboard/interviews/${id}`)}
             >
               View more
             </Button>

@@ -1,5 +1,6 @@
 [
   {
+    "id":1,
     "summary": "Candidate demonstrates solid React/TypeScript experience, strong focus on accessibility, state management, and testing.",
     "sentiment": "positive",
     "keywords": [
@@ -26,6 +27,7 @@
     ]
   },
   {
+    "id":2,
     "summary": "Candidate demonstrates solid React/TypeScript experience, strong focus on accessibility, state management, and testing.",
     "sentiment": "positive",
     "keywords": [
@@ -51,6 +53,7 @@
     ]
   },
   {
+    "id":3,
     "summary": "Candidate demonstrates solid React/TypeScript experience, strong focus on accessibility, state management, and testing.",
     "sentiment": "positive",
     "keywords": [
