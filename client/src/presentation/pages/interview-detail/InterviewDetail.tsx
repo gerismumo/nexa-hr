@@ -42,6 +42,7 @@ const InterviewDetail = () => {
             summary={feedback.summary}
             sentiment={feedback.sentiment}
             keywords={feedback.keywords}
+            questions={feedback.questions}
           />
         </Stack>
         <div style={{ flex: 1, width: "100%" }}>
