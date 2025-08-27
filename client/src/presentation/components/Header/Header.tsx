@@ -7,6 +7,7 @@ import { IconMenu2 } from "@tabler/icons-react";
 import { useState } from "react";
 import { NavbarNested } from "../Navbar/Navbar";
 import ThemeToggle from "../ThemeToggle";
+import { useNavigate } from "react-router-dom";
 
 // const links = [
 //   { link: "/about", label: "Features" },
@@ -82,7 +83,7 @@ export function HeaderMenu() {
 
   const toggleSidebar = () => setIsOpen(!isOpen);
   const closeSidebar = () => setIsOpen(false);
-
+  const navigate = useNavigate();
   return (
     <>
       <header className={classes.header}>
@@ -96,7 +97,7 @@ export function HeaderMenu() {
               </Group>  */}
             <div className="flex flex-row gap-3 items-center">
               <ThemeToggle />
-              <Button>Log Out</Button>
+              <Button onClick={() => navigate("/")}>Log Out</Button>
               <Avatar color="blue" radius="xl">
                 HR
               </Avatar>

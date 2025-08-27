@@ -7,7 +7,7 @@ import Add from "../Interviews/Add";
 import ActionLayout from "../../components/ActionLayout";
 import analysisData from "../../../mockdata/sample_analysis.json"
 
-export function Dashboard() {
+export default function Dashboard() {
   return (
     <Box py="md">
       <Group justify="space-between" mb="lg">
