@@ -3,6 +3,7 @@
 It consists of two parts:
 
 * **Client:** React + Vite + TypeScript + Mantine UI + TailwindCSS
+  (Note: Mantine is used instead of shadcn/ui)
 * **Server:** Python + FastAPI (exposed with Uvicorn)
 
 Live demo: [https://nexa-hr.vercel.app](https://nexa-hr.vercel.app/)
@@ -31,12 +32,14 @@ nexa-hr/
 git clone https://github.com/gerismumo/nexa-hr
 cd nexa-hr
 ```
+
 Create a `.env` file:
 
 ```env
 cd client
 VITE_API_URL=http://localhost:8000
 ```
+
 ---
 
 ### 2. Run with Docker (Recommended)
@@ -90,6 +93,7 @@ Server runs on  [http://localhost:8000](http://localhost:8000)
 * TypeScript
 * Mantine UI
 * TailwindCSS
+* Zustand
 
 **Server:**
 
